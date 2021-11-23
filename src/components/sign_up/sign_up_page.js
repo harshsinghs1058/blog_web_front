@@ -23,7 +23,7 @@ const validate = (values) => {
     errors.email = "Email is required";
   } else if (
     !/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-      values.email
+      values.email.trim()
     )
   ) {
     errors.email = "Invalid email";
@@ -66,7 +66,11 @@ export default function SignUp(props) {
       //if all field are validated send request to backend
       try {
         await axios
-          .post(process.env.REACT_APP_URL + "user/signUp", formik.values)
+          .post(process.env.REACT_APP_URL + "user/signUp", {
+            email: formik.values.email.trim(),
+            name: formik.values.name.trim(),
+            password: formik.values.password,
+          })
           .then(async (res) => {
             if (res.status === 201) {
               //on successfully sign up
