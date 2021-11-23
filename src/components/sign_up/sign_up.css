@@ -1,0 +1,125 @@
+#sign_up_page {
+    background-image: url('/src/assets/images/cg_blog.jpg');
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    backdrop-filter: blur(1px);
+    content: none;
+    display: flex;
+    align-items: center;
+}
+
+#sign_up_page #left {
+    width: 60%;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 125px;
+    font-weight: bold;
+}
+
+#sign_up_page #left a {
+    color: white;
+}
+
+#sign_up_page #form {
+    width: 400px;
+    height: 480px;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+#sign_up_page #welcome {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#sign_up_page input {
+    width: 240px;
+    border-right-style: none;
+    border-left-style: none;
+    border-top-style: none;
+    border-color: #0092e0ff;
+    padding: 12px 20px;
+    background: inherit;
+    cursor: pointer;
+}
+
+#sign_up_page input:focus {
+    outline: none
+}
+
+#sign_up_page #btn_sign_up {
+    width: 280px;
+    background-color: none;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    background-color: #0092e0ff;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#sign_up_page #btn_sign_up:hover {
+    color: black
+}
+
+#sign_up_page #forgot {
+    margin-left: 150px;
+    text-decoration: none;
+    color: #0092e0ff;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#sign_up_page a {
+    text-decoration: none;
+    color: #0092e0ff;
+}
+
+#sign_up_page a:hover {
+    text-decoration: underline;
+    color: #000;
+}
+
+#sign_up_page #left a:hover {
+    text-decoration: none;
+    color: #FFF;
+}
+
+#sign_up_page .error{
+    color: red;
+    margin-left:40px;
+}
+
+@media (max-width:1100px) {
+    #sign_up_page {
+        flex-direction: column;
+        height: 100vh;
+        width: 100vw;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    #sign_up_page #left {
+        width: 100vw;
+        text-align: center;
+        color: white;
+        font-size: 5.5rem;
+        font-weight: bold;
+    }
+}
+
+@media (max-width:500px) {
+    #sign_up_page #form {
+        width: 80vw;
+    }
+}
