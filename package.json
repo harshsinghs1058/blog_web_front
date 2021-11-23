@@ -26,6 +26,7 @@
     "tailwind-scrollbar-hide": "^1.1.5",
     "web-vitals": "^1.1.1"
   },
+  "homepage": "https://harshsinghs1058.github.io/blog_web_front/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
