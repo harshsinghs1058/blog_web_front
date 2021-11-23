@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Categories from "./my_components/category_side_bar";
 import BlogCard from "./my_components/blog_card";
 import NavBar from "./my_components/nav_bar";
-
+import loading_gif from "./../assets/loading_gif.gif";
 export default function HomePage() {
   console.log(process.env.REACT_APP_URL);
   const [blogs, setBlogs] = useState([]);
@@ -26,9 +26,17 @@ export default function HomePage() {
   return (
     <div className='bg-baby_blue_eyes block h-full min-h-screen'>
       <NavBar />
-      <div className='flex'>
-        {Blogs()}
-        <div>{Categories()}</div>
+      <div>
+        {blogs.length && blogs.length > 0 ? (
+          <div className='flex'>
+            <Blogs />
+            <Categories />
+          </div>
+        ) : (
+          <div className='flex items-center justify-center h-80v'>
+            <img src={loading_gif} alt='loading' height='200px' width='200px' />
+          </div>
+        )}
       </div>
     </div>
   );
@@ -36,13 +44,9 @@ export default function HomePage() {
   function Blogs() {
     return (
       <div className='grid grid-cols-3 w-3/4 '>
-        {blogs.length > 0 ? (
-          blogs.map((element) => {
-            return <BlogCard element={element} />;
-          })
-        ) : (
-          <h1>Loading Blogs</h1>
-        )}
+        {blogs.map((element) => {
+          return <BlogCard element={element} key={element._id} />;
+        })}
       </div>
     );
   }
