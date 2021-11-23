@@ -5,6 +5,7 @@ import BlogCard from "./my_components/blog_card";
 import NavBar from "./my_components/nav_bar";
 
 export default function HomePage() {
+  console.log(process.env.REACT_APP_URL);
   const [blogs, setBlogs] = useState([]);
   console.log(blogs);
   useEffect(() => {
