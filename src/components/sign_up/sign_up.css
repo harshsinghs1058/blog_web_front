@@ -123,3 +123,9 @@
         width: 80vw;
     }
 }
+
+.loading_gif{
+    height: 35px;
+    width: 35px;
+    margin:0 auto;
+}

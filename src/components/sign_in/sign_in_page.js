@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { useAuth } from "../../context/authContext";
+import loading_gif from "./../../assets/loading_gif.gif";
 
 const initialValues = {
   email: "",
@@ -33,6 +34,7 @@ export default function SignIn() {
   const [formSubmitted, setFormSubmitted] = useState(false);
   // eslint-disable-next-line no-unused-vars
   const [auth, userSignIn] = useAuth(useAuth);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues,
@@ -46,6 +48,8 @@ export default function SignIn() {
     if (!(formik.errors.email || formik.errors.password)) {
       //if all field are validated send request to backend
       try {
+        setIsLoading(true);
+
         await axios
           .post(process.env.REACT_APP_URL + "user/signIn", {
             email: formik.values.email.trim(),
@@ -79,6 +83,7 @@ export default function SignIn() {
         if (err.response) alert(err.response.data.message);
         else alert(err);
       }
+      setIsLoading(false);
     }
   };
 
@@ -131,7 +136,13 @@ export default function SignIn() {
         <span id='forgot'>
           <Link to='/forget-password'>Forgot Password ?</Link>
         </span>
-        <button id='btn_sign_in'>Continue </button>
+        <button id='btn_sign_in'>
+          {isLoading ? (
+            <img src={loading_gif} className='loading_gif' alt='loading' />
+          ) : (
+            "Continue"
+          )}{" "}
+        </button>
         <span>
           New to blogSite? <Link to='/signUp'>Join now</Link>
         </span>
