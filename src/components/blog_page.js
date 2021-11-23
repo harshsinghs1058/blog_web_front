@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import NavBar from "./my_components/nav_bar";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import loading_gif from "./../assets/loading_gif.gif";
+
 export default function BlogPage() {
   const { blogID } = useParams();
   const [blogData, setBlogData] = useState({});
@@ -60,8 +62,7 @@ export default function BlogPage() {
       <div>
         <NavBar />
         <div className='flex items-center flex-col font-bold justify-center h-80v text-4xl'>
-          Blog Not found
-          <div>Please refresh the page</div>
+          <img src={loading_gif} alt='loading' height='200px' width='200px' />
         </div>
       </div>
     );

@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./my_components/nav_bar";
 
 export default function ContactUsPage() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const handleFormSubmit = () => {
+    alert(
+      "Your query is successfully submit.We will contact you soon on Email"
+    );
+    setEmail("");
+    setMessage("");
+  };
+
   return (
     <div className=' bg-baby_blue_eyes h-100v'>
       <NavBar />
@@ -39,7 +50,10 @@ export default function ContactUsPage() {
                 </div>
               </div>
 
-              <form className='p-6 flex flex-col justify-center'>
+              <form
+                className='p-6 flex flex-col justify-center'
+                onSubmit={handleFormSubmit}
+              >
                 <div className='flex flex-col mt-2'>
                   <label for='email' className='hidden'>
                     Email
@@ -50,6 +64,9 @@ export default function ContactUsPage() {
                     id='email'
                     placeholder='Email'
                     className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none'
+                    autoFocus
+                    value={email}
+                    onChange={(evt) => setEmail(evt.target.value)}
                   />
                 </div>
 
@@ -63,6 +80,8 @@ export default function ContactUsPage() {
                     id='tel'
                     placeholder='Message'
                     className='w-100 mt-2 py-3 px-3 rounded-lg bg-white dark:bg-gray-800 border border-gray-400 dark:border-gray-700 text-gray-800 font-semibold focus:border-indigo-500 focus:outline-none h-48'
+                    value={message}
+                    onChange={(evt) => setMessage(evt.target.value)}
                   />
                 </div>
 

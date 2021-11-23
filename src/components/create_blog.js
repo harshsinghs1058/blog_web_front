@@ -9,7 +9,8 @@ import { useAuth } from "../context/authContext";
 import NotAuth from "./my_components/not_auth";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
+import loading_gif from "./../assets/loading_gif.gif";
+let isLoading = false;
 export default function CreateBlogPage() {
   const [auth] = useAuth(useAuth);
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -27,6 +28,7 @@ export default function CreateBlogPage() {
     setSubmitted(true);
     if (title && desc && imgUrl && editorState.getCurrentContent().hasText()) {
       //on successfully validation
+      isLoading = true;
       await axios
         .post(process.env.REACT_APP_URL + "blog/createBlog", {
           title,
@@ -39,10 +41,12 @@ export default function CreateBlogPage() {
         .then((res) => {
           console.log(res);
           alert("Blog created successfully");
+          isLoading = false;
           navigate(`/${res.data.blog._id}/blog`, { replace: true });
         })
         .catch((err) => {
           alert(err);
+          isLoading = false;
         });
     }
   };
@@ -73,7 +77,17 @@ export default function CreateBlogPage() {
               className='bg-baby_blue_eyes mt-5 px-5 text-3xl border-2 border-light_pink rounded-xl font-bold hover:bg-celeste transform duration-300 hover:scale-110 block mb-5 h-24 w-52'
               onClick={handleAddBlog}
             >
-              Add Blog
+              {!isLoading ? (
+                "Add Blog"
+              ) : (
+                <img
+                  src={loading_gif}
+                  className='loading_gif'
+                  alt='loading'
+                  height='25px'
+                  width='25px'
+                />
+              )}
             </button>
           </div>
           <div className='mx-auto w-1/2'>

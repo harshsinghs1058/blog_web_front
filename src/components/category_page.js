@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import Categories from "./my_components/category_side_bar";
 import NavBar from "./my_components/nav_bar";
-
+import loading_gif from "./../assets/loading_gif.gif";
 export default function CategoryPage() {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
@@ -30,12 +30,18 @@ export default function CategoryPage() {
   return (
     <div className='bg-baby_blue_eyes h-100v'>
       <NavBar />
-      <div className='flex'>
-        {Blogs()}
-        <div>
-          <Categories />
+      {!blogs.length ? (
+        <div className='flex items-center justify-center h-80v'>
+          <img src={loading_gif} alt='loading' height='200px' width='200px' />
         </div>
-      </div>
+      ) : (
+        <div className='flex'>
+          {Blogs()}
+          <div>
+            <Categories />
+          </div>
+        </div>
+      )}
     </div>
   );
 

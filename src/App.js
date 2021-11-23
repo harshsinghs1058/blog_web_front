@@ -3,6 +3,7 @@ import BlogPage from "./components/blog_page";
 import CategoryPage from "./components/category_page";
 import ContactUsPage from "./components/contact_us_page";
 import CreateBlogPage from "./components/create_blog";
+import PageNotFound from "./components/page_not_found/page_not_found";
 import HomePage from "./components/home_page";
 import ProfilePage from "./components/profile_page";
 import SignUp from "./components/sign_up/sign_up_page";
@@ -21,6 +22,7 @@ function App() {
         <Route exact path='/category/:category' element={<CategoryPage />} />
         <Route exact path='/profile' element={<ProfilePage />} />
         <Route exact path='/contactUs' element={<ContactUsPage />} />
+        <Route exact path='*' element={<PageNotFound />} />
       </Routes>
     </HashRouter>
   );
